@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.implementation
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -6,7 +8,11 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
+    kotlin("plugin.serialization") version "2.0.0"
     alias(libs.plugins.composeCompiler)
+
+    // SQLDelight
+    id("app.cash.sqldelight") version "2.0.2"
 }
 
 kotlin {
@@ -50,6 +56,26 @@ kotlin {
             // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-serialization-json/1.8.0
             implementation(libs.kotlinx.serialization.json)
         }
+
+        val commonMain by getting {
+            dependencies {
+                implementation(libs.coroutines.extensions)
+            }
+        }
+
+        val androidMain by getting {
+            dependsOn(commonMain)
+            dependencies {
+                implementation (libs.android.driver)
+            }
+        }
+
+        val iosMain by creating {
+            dependsOn(commonMain)
+            dependencies {
+                implementation (libs.native.driver)
+            }
+        }
     }
 }
 
@@ -83,4 +109,3 @@ android {
 dependencies {
     debugImplementation(compose.uiTooling)
 }
-
