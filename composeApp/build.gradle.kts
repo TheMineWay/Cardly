@@ -43,6 +43,12 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+
+            // Maven libraries
+
+            // JSON Serialization
+            // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-serialization-json/1.8.0
+            implementation(libs.kotlinx.serialization.json)
         }
     }
 }
