@@ -4,6 +4,7 @@ android-compileSdk = "35"
 android-minSdk = "24"
 android-targetSdk = "35"
 androidDriver = "2.0.1"
+androidDriverVersion = "2.0.2"
 androidx-activityCompose = "1.10.1"
 androidx-appcompat = "1.7.0"
 androidx-constraintlayout = "2.2.1"
@@ -17,9 +18,11 @@ coroutinesExtensions = "2.0.2"
 junit = "4.13.2"
 kotlin = "2.1.10"
 kotlinxSerializationJson = "1.8.0"
+nativeDriver = "2.0.2"
 
 [libraries]
 android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "androidDriver" }
+android-driver-v202 = { module = "app.cash.sqldelight:android-driver", version.ref = "androidDriverVersion" }
 coroutines-extensions = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "coroutinesExtensions" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
@@ -35,6 +38,7 @@ androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", nam
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "androidDriver" }
+native-driver-v202 = { module = "app.cash.sqldelight:native-driver", version.ref = "nativeDriver" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

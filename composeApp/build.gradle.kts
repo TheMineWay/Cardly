@@ -11,7 +11,6 @@ plugins {
     kotlin("plugin.serialization") version "2.0.0"
     alias(libs.plugins.composeCompiler)
 
-    // SQLDelight
     id("app.cash.sqldelight") version "2.0.2"
 }
 
@@ -39,7 +38,16 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+
+            // SQLDelight driver
+            implementation(libs.android.driver.v202)
         }
+
+        nativeMain.dependencies {
+            // SQLDelight driver (for iOS and Windows)
+            implementation(libs.native.driver.v202)
+        }
+
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -55,26 +63,6 @@ kotlin {
             // JSON Serialization
             // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-serialization-json/1.8.0
             implementation(libs.kotlinx.serialization.json)
-        }
-
-        val commonMain by getting {
-            dependencies {
-                implementation(libs.coroutines.extensions)
-            }
-        }
-
-        val androidMain by getting {
-            dependsOn(commonMain)
-            dependencies {
-                implementation (libs.android.driver)
-            }
-        }
-
-        val iosMain by creating {
-            dependsOn(commonMain)
-            dependencies {
-                implementation (libs.native.driver)
-            }
         }
     }
 }
@@ -108,4 +96,12 @@ android {
 
 dependencies {
     debugImplementation(compose.uiTooling)
+}
+
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("org.themineway")
+        }
+    }
 }
