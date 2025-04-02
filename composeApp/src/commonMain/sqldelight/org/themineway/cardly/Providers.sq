@@ -3,8 +3,11 @@ CREATE TABLE providers (
 	name TEXT NOT NULL
 , created_at INTEGER DEFAULT CURRENT_TIMESTAMP NOT NULL);
 
-selectAll:
+findAll:
 SELECT * FROM providers;
+
+findAllByName:
+SELECT * FROM providers WHERE name = ?;
 
 create:
 INSERT INTO providers(name) VALUES (?);

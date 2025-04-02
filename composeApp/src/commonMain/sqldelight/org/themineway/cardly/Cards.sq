@@ -5,8 +5,11 @@ CREATE TABLE cards (
 	CONSTRAINT cards_providers_FK FOREIGN KEY (provider_id) REFERENCES providers(id)
 );
 
-selectAll:
+findAll:
 SELECT * FROM cards;
+
+findAllByName:
+SELECT * FROM cards WHERE name = ?;
 
 create:
 INSERT INTO cards(code, provider_id, name, description) VALUES (?,?,?,?);
