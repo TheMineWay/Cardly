@@ -1,9 +1,11 @@
 package org.themineway.cardly.components.core
 
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
+import org.themineway.cardly.components.core.ui.align.FullCenter
 import org.themineway.cardly.i18n.Locales
 
 @Composable
@@ -13,7 +15,7 @@ fun Init() {
     }
 
     when (i18nData) {
-        null -> Text("Loading");
+        null -> FullCenter { CircularProgressIndicator() };
         else -> Entry();
     }
 }
