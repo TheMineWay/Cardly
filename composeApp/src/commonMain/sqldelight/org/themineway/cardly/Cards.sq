@@ -4,3 +4,15 @@ CREATE TABLE cards (
 	provider_id INTEGER NOT NULL, created_at INTEGER DEFAULT CURRENT_TIMESTAMP NOT NULL, name TEXT DEFAULT ('32'), description TEXT DEFAULT ('512'),
 	CONSTRAINT cards_providers_FK FOREIGN KEY (provider_id) REFERENCES providers(id)
 );
+
+selectAll:
+SELECT * FROM cards;
+
+create:
+INSERT INTO cards(code, provider_id, name, description) VALUES (?,?,?,?);
+
+updateById:
+UPDATE cards SET code = ?, provider_id = ?, name = ?, description = ? WHERE id = ?;
+
+deleteById:
+DELETE FROM cards WHERE id = ?;

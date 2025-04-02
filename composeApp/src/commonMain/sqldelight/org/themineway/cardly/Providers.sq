@@ -2,3 +2,15 @@ CREATE TABLE providers (
 	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	name TEXT NOT NULL
 , created_at INTEGER DEFAULT CURRENT_TIMESTAMP NOT NULL);
+
+selectAll:
+SELECT * FROM providers;
+
+create:
+INSERT INTO providers(name) VALUES (?);
+
+updateById:
+UPDATE providers SET name = ? WHERE id = ?;
+
+deleteById:
+DELETE FROM providers WHERE id = ?;
