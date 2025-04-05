@@ -60,6 +60,13 @@ kotlin {
 
             // Maven libraries
 
+            // Routing
+            implementation(libs.navigation.compose)
+
+            // - Views/Fragments Integration
+            //implementation (libs.androidx.navigation.fragment)
+            //implementation (libs.androidx.navigation.ui)
+
             // JSON Serialization
             // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-serialization-json/1.8.0
             implementation(libs.kotlinx.serialization.json)

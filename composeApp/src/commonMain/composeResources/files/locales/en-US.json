@@ -1,6 +1,7 @@
 {
-  "test": "Hello",
-  "hello": {
-    "Title": "Test title"
+  "screens": {
+    "update": {
+      "Title": "App updater"
+    }
   }
 }
