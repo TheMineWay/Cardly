@@ -1,47 +1,37 @@
 package org.themineway.cardly.components.ui.wallet
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import org.themineway.cardly.models.wallet.ProviderCardModel
-import org.themineway.cardly.lib.utils.generic.array.pick
 
-const val MAX_VISIBLE_CARDS = 3;
+const val CARD_CONTENT_PADDING = 8;
+const val CARD_HEADER_HEIGHT = 22;
+const val CARD_HEIGHT = 128;
+
+fun getYOffset(index: Int): Int {
+    return (index * -1 * (CARD_HEIGHT - (CARD_HEADER_HEIGHT + (CARD_CONTENT_PADDING * 2))));
+}
 
 @Composable
 fun CardStack(cards: Iterable<ProviderCardModel>) {
-    val selectedCard = remember { mutableStateOf(0) }
-
-    val visibleCards: List<ProviderCardModel> = cards.pick(amount = MAX_VISIBLE_CARDS, startAt = selectedCard.value, loop = true);
-
     Column {
-        Box(
-            modifier = Modifier.height((48).dp)
-        )
-        Box(modifier = Modifier) {
-            visibleCards.forEachIndexed { index, card ->
-                val reverseIndex = visibleCards.size - 1 - index
-
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(200.dp)
-                        .graphicsLayer {
-                            translationY = (reverseIndex * -48).toFloat() // vertical stack
-                            scaleX = 1f - (reverseIndex * 0.03f)
-                            scaleY = 1f - (reverseIndex * 0.03f)
+        cards.forEachIndexed { index, card -> run {
+                Card (modifier = Modifier.fillMaxWidth().height(CARD_HEIGHT.dp).offset(x = 0.dp, y = getYOffset(index).dp)) {
+                    // Card content
+                    Box(modifier = Modifier.padding(CARD_CONTENT_PADDING.dp)) {
+                        // Header
+                        Box(modifier = Modifier.height(CARD_HEADER_HEIGHT.dp)) {
+                            Text(card.name)
                         }
-                        .align(Alignment.TopCenter),
-                ) {
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        Text(card.name)
                     }
                 }
             }
