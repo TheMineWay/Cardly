@@ -2,7 +2,7 @@ package org.themineway.cardly.navigation.screens
 
 import androidx.compose.runtime.Composable
 import org.themineway.cardly.components.ui.wallet.CardStack
-import org.themineway.cardly.lib.datatypes.wallet.ProviderCardModel
+import org.themineway.cardly.models.wallet.ProviderCardModel
 
 @Composable
 fun CardScreen(cardId: String) {

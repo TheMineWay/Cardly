@@ -10,16 +10,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
-import org.themineway.cardly.lib.datatypes.wallet.ProviderCard
+import org.themineway.cardly.models.wallet.ProviderCardModel
 import org.themineway.cardly.lib.utils.generic.array.pick
 
 const val MAX_VISIBLE_CARDS = 3;
 
 @Composable
-fun CardStack(cards: Iterable<ProviderCard>) {
+fun CardStack(cards: Iterable<ProviderCardModel>) {
     val selectedCard = remember { mutableStateOf(0) }
 
-    val visibleCards: List<ProviderCard> = cards.pick(amount = MAX_VISIBLE_CARDS, startAt = selectedCard.value, loop = true);
+    val visibleCards: List<ProviderCardModel> = cards.pick(amount = MAX_VISIBLE_CARDS, startAt = selectedCard.value, loop = true);
 
     Column {
         Box(

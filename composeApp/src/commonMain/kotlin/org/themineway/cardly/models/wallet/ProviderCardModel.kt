@@ -1,3 +1,3 @@
-package org.themineway.cardly.lib.datatypes.wallet
+package org.themineway.cardly.models.wallet
 
 data class ProviderCardModel(val id: Int, val name: String, val code: String)
